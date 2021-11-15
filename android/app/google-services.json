@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "575914493491",
+    "project_id": "link-phnx",
+    "storage_bucket": "link-phnx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575914493491:android:895cfd59c30d009d168546",
+        "android_client_info": {
+          "package_name": "com.linkedclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "575914493491-etfs2vgput3vh2ejgjk3a5b5r36e4bu6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.linkedclone",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "575914493491-vnp97a935o0ct785144kte0deuqtf1dn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB_oP3fu28fE7fsHzqsidkm81qhWKKFSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "575914493491-vnp97a935o0ct785144kte0deuqtf1dn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
