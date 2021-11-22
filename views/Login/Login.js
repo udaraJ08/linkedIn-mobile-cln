@@ -1,38 +1,22 @@
 import { Button, Input } from 'native-base';
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import Theme from '../../assets/css/theme.style';
 import { GoogleSigninButton, GoogleSignin } from '@react-native-google-signin/google-signin';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import auth from '@react-native-firebase/auth';
+
+import { loginListen } from './action';
 
 const Login = ({ navigation }) => {
 
-  useEffect(() => {
-    GoogleSignin.configure({
-      webClientId: '575914493491-vnp97a935o0ct785144kte0deuqtf1dn.apps.googleusercontent.com',
-    });
-  }, [])
+  ///Hooks calling
 
-  ///Firebase callings
-  async function googleSign() {
-    // Get the users ID token
-    const { idToken } = await GoogleSignin.signIn();
-
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-    // Sign-in the user with the credential
-    return auth().signInWithCredential(googleCredential);
-  }
-
-  const getCurrentUser = () => {
-    return auth().currentUser;
-  }
+  const dispatch = useDispatch();
 
   ///lead functions
   const signWithGoogle = () => {
-    googleSign().then(res => console.log(res))
+    dispatch(loginListen());
   }
 
 

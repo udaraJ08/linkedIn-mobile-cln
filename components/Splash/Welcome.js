@@ -1,10 +1,32 @@
-import {Button} from 'native-base';
-import React from 'react';
-import {View, Text, StyleSheet, StatusBar, Image} from 'react-native';
+import { Button } from 'native-base';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, StatusBar, Image } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import Theme from '../../assets/css/theme.style';
+import { checkUserListen } from '../../views/Login/action';
 
-const Welcome = ({navigation}) => {
+const Welcome = ({ navigation }) => {
+
+  ///redux selectors
+  const { logged } = useSelector(state => state.loginReducer);
+
+  ///hooks calling
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkUserListen());
+    routeHandler();
+  }, [logged]);
+
   ///navigations
+  const routeHandler = () => {
+    if (logged) navigateToFeed()
+  }
+
+  const navigateToFeed = () => {
+    navigation.navigate("tour");
+  }
+
   const navigateToLogin = () => {
     navigation.navigate('login');
   };
@@ -18,17 +40,17 @@ const Welcome = ({navigation}) => {
       <StatusBar backgroundColor="#3498db" />
       <View style={[style.upperView, Theme.center]}>
         <Image
-          style={style.mainImage}
+          style={[style.mainImage]}
           source={require('../../assets/images/LI-Logo.png')}
         />
-        <Text style={{marginTop: 10}}>Connect-to Oppurtunity</Text>
+        <Text style={{ marginTop: 10 }}>Connect-to Oppurtunity</Text>
       </View>
       <View style={[style.bottomView, Theme.linkedinBack, Theme.center]}>
-        <Button style={style.joinBtn} onPress={() => navigateToSignup()}>
+        <Button style={[style.joinBtn]} onPress={() => navigateToSignup()}>
           JOIN US
         </Button>
-        <Button style={style.accountBtn} onPressOut={() => navigateToLogin()}>
-          <Text style={[Theme.linkedInFontColor, {padding: 2}]}>
+        <Button style={[style.accountBtn]} onPressOut={() => navigateToLogin()}>
+          <Text style={[Theme.linkedInFontColor, { padding: 2 }]}>
             HAVE AN ACCOUNT ?
           </Text>
         </Button>

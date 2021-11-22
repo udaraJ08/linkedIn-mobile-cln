@@ -5,6 +5,7 @@ import Welcome from '../components/Splash/Welcome';
 import { CardStyleInterpolators } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Signup from '../views/Signup/Signup';
+import Tour from '../views/Tour/Tour';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,9 @@ const WelcomeRoutes = () => {
         <Stack.Screen name="welcome" component={Welcome} />
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="signup" component={Signup} />
+        <Stack.Screen options={{
+          gestureEnabled: false,
+        }} name="tour" component={Tour} />
       </Stack.Navigator>
     </NavigationContainer>
   );
