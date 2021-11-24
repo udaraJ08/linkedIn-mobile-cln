@@ -27,6 +27,12 @@ const Theme = StyleSheet.create({
     bgOrange: {
         backgroundColor: "#fd9644"
     },
+    bgGrey: {
+        backgroundColor: "#95a5a6"
+    },
+    bgSilver: {
+        backgroundColor: "#bdc3c7"
+    },
 
     //Font-colors
     linkedInFontColor: {
@@ -56,8 +62,12 @@ const Theme = StyleSheet.create({
         color: "#a5b1c2"
     },
 
+    txtOrange: {
+        color: "#fd9644"
+    },
+
     txtDark: {
-        color: "##2f3640"
+        color: "#2f3640"
     },
     //font-styles
     fontThin: {
@@ -76,11 +86,14 @@ const Theme = StyleSheet.create({
     f10: {
         fontSize: 10
     },
+    f12: {
+        fontSize: 12
+    },
     f15: {
         fontSize: 15
     },
-    f18: {
-        fontSize: 18
+    f17: {
+        fontSize: 17
     },
     f20: {
         fontSize: 20
@@ -103,7 +116,7 @@ const Theme = StyleSheet.create({
     f35: {
         fontSize: 35
     },
-    40: {
+    f40: {
         fontSize: 40
     },
 
@@ -115,6 +128,14 @@ const Theme = StyleSheet.create({
 
     flxDirectionRow: {
         flexDirection: 'row'
+    },
+
+    flxWrap: {
+        flexWrap: "wrap"
+    },
+
+    jstfyBetween: {
+        justifyContent: "space-between"
     },
 
     //Dimensions
@@ -346,6 +367,38 @@ const Theme = StyleSheet.create({
     op9: {
         opacity: 0.9
     },
+
+    //border-radius
+    radius5: {
+        borderRadius: 5
+    },
+    radius8: {
+        borderRadius: 8
+    },
+    radius10: {
+        borderRadius: 10
+    },
+    radius12: {
+        borderRadius: 12
+    },
+    radius15: {
+        borderRadius: 15
+    },
+    radius18: {
+        borderRadius: 18
+    },
+    radius20: {
+        borderRadius: 20
+    },
+    radius50: {
+        borderRadius: 50
+    },
+    radius100: {
+        borderRadius: 100
+    },
+    radius500: {
+        borderRadius: 500
+    }
 })
 
 export default Theme;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
 import Theme from '../../assets/css/theme.style'
-import { Input, TextArea } from "native-base"
+import { Input, TextArea, StatusBar } from "native-base"
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment'
@@ -16,7 +16,6 @@ const UserDetails = ({ navigation }) => {
     const routeToDesgination = () => {
         navigation.navigate("designation-details");
     }
-
 
     //lead functions
     const showDatePicker = () => {
@@ -34,9 +33,10 @@ const UserDetails = ({ navigation }) => {
 
     return (
         <View style={Theme.mainScreen} >
+            <StatusBar animated={true} backgroundColor="#10ac84" />
             <View style={[Theme.flex1, Theme.center]}>
                 <Text style={[Theme.f18]}>Let's fetch some
-                    <Text style={[Theme.fontBold, Theme.txtSuccess, { fontSize: 23 }]}> INFORMATION</Text>
+                    <Text style={[Theme.fontBold, Theme.txtSuccess, { fontSize: 23 }]}> ABOUT</Text>
                 </Text>
             </View>
             <View style={[Theme.flex5]}>
@@ -67,7 +67,7 @@ const UserDetails = ({ navigation }) => {
                             </TouchableOpacity>
                         </View>
                         <View style={[Theme.flex1, Theme.pt30, Theme.center]}>
-                            <Text style={[Theme.pb10, Theme.f25, Theme.txtDark, Theme.op5]}>{dob}</Text>
+                            <Text style={[Theme.pb10, Theme.f20, Theme.txtDark, Theme.op5]}>{dob}</Text>
                         </View>
                         <DateTimePickerModal
                             isVisible={isDatePickerVisible}
