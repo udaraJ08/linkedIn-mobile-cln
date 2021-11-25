@@ -1,13 +1,18 @@
-import { Avatar, Button } from 'native-base'
-import React, { useEffect, useState } from 'react'
+import { Avatar } from 'native-base'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { useSelector } from 'react-redux'
 import Theme from '../../assets/css/theme.style'
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import ImagePicker from 'react-native-image-crop-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useDispatch } from 'react-redux'
+import { profileImageListen } from '../../views/Tour/action'
+
 
 const UploadAvatar = ({ navigation }) => {
+
+    //hooks
+    const dispatch = useDispatch();
 
     const [fileObj, setFileObj] = useState();
 
@@ -39,8 +44,15 @@ const UploadAvatar = ({ navigation }) => {
         });
     }
 
+    //dispatches
+    const submitAvatar = () => {
+
+        if (!!fileObj)
+            dispatch(profileImageListen(fileObj));
+    }
+
     const avatarAvailability = () => {
-        return user.additionalUserInfo.profile.picture ? false : true
+        return user.additionalUserInfo.profile.picture ? false : false
     }
 
     const imageAvailability = () => {
@@ -83,7 +95,7 @@ const UploadAvatar = ({ navigation }) => {
             </View>
             <View style={[{ marginTop: 20 }, Theme.center]}>
                 <TouchableOpacity
-                    onPressOut={() => routeToUserDet()}
+                    onPressOut={submitAvatar}
                     style={[
                         { display: imageAvailability() ? "flex" : "none" },
                         Theme.linkedinBack,

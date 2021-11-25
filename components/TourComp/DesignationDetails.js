@@ -109,7 +109,7 @@ const DesignationDetails = ({ navigation }) => {
                                 Theme.flxDirectionRow,
                                 Theme.btnM20
                             ]}>
-                            <Text style={[Theme.whiteFont, Theme.mr10]}>NEXT</Text>
+                            <Text style={[Theme.whiteFont, Theme.mr10]}>CREATE ACCOUNT</Text>
                             <Icon name="long-arrow-right" color="#ecf0f1" size={20} />
                         </TouchableOpacity>
                     </View>
