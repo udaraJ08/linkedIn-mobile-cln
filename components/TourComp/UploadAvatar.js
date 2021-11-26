@@ -14,7 +14,7 @@ const UploadAvatar = ({ navigation }) => {
     //hooks
     const dispatch = useDispatch();
 
-    const [fileObj, setFileObj] = useState();
+    const [fileObj, setFileObj] = useState("");
 
     const { user } = useSelector(state => state.loginReducer)
 
@@ -30,7 +30,7 @@ const UploadAvatar = ({ navigation }) => {
             height: 400,
             cropping: true,
         }).then(image => {
-            setFileObj(image);
+            setFileObj(image.path);
         });
     }
 
@@ -40,15 +40,17 @@ const UploadAvatar = ({ navigation }) => {
             height: 400,
             cropping: true
         }).then(image => {
-            setFileObj(image);
+            setFileObj(image.path);
         });
     }
 
     //dispatches
     const submitAvatar = () => {
 
-        if (!!fileObj)
+        if (!!fileObj) {
             dispatch(profileImageListen(fileObj));
+            routeToUserDet();
+        }
     }
 
     const avatarAvailability = () => {

@@ -3,10 +3,15 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import Theme from '../../assets/css/theme.style'
 import { Input, TextArea, StatusBar } from "native-base"
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useDispatch } from 'react-redux';
+import { designationListen, userRegisterListen } from '../../views/Tour/action'
+import { useSelector } from 'react-redux'
 
 const DesignationDetails = ({ navigation }) => {
 
     //hooks
+    const [designation, setDesignation] = useState("");
+
     const [txtEducation, setTxtEducation] = useState("");
 
     const [txtSkills, setTxtSkills] = useState("");
@@ -15,20 +20,36 @@ const DesignationDetails = ({ navigation }) => {
 
     const [skills, setSkills] = useState([]);
 
+    const dispatch = useDispatch();
+
+    //redux selectors
+    const user = useSelector(state => state.tourReducer)
+
     //routing
-    const routeToTourEnd = () => {
-        navigation.navigate("tour-end");
+    const routeToDataCook = () => {
+        navigation.navigate("data-cook");
     }
 
     //lead functions
     const addSkills = () => {
-        setSkills(skills.concat(txtSkills));
-        setTxtSkills("");
+        if (txtSkills.toString().trim().length > 0) {
+            setSkills(skills.concat(txtSkills));
+            setTxtSkills("");
+        }
     }
 
     const addEducation = () => {
-        setEducation(education.concat(txtEducation))
-        setTxtEducation("");
+
+        if (txtEducation.toString().trim().length > 0) {
+            setEducation(education.concat(txtEducation))
+            setTxtEducation("");
+        }
+    }
+
+    //dispatching
+    const submitDesignation = () => {
+        dispatch(designationListen({ designation, education, skills }));
+        routeToDataCook();
     }
 
     return (
@@ -43,9 +64,12 @@ const DesignationDetails = ({ navigation }) => {
                 <ScrollView style={[Theme.pl10, Theme.pr10]}>
                     <View style={[Theme.mb30]}>
                         <Text style={[Theme.pb10]}>Your designation <Text style={Theme.txtDanger}>*</Text></Text>
-                        <Input placeholder="Software engineer / devop / etc..." style={[Theme.inputBorder]} />
+                        <Input
+                            onChangeText={e => setDesignation(e)}
+                            placeholder="Software engineer / devop / etc..."
+                            style={[Theme.inputBorder]} />
                     </View>
-                    <View style={[Theme.mb10]}>
+                    <View>
                         <View style={[Theme.flxDirectionRow]}>
                             <View style={[Theme.flex5, Theme.pr10]}>
                                 <Text style={[Theme.pb10]}>Education <Text style={Theme.txtDanger}>*</Text></Text>
@@ -66,11 +90,13 @@ const DesignationDetails = ({ navigation }) => {
                     </View>
                     <View style={[Theme.flxDirectionRow, Theme.flxWrap, Theme.mb30]}>
                         {education.map((e, index) =>
-                            <View
+                            <TouchableOpacity
                                 key={index}
                                 style={[Theme.mr10, Theme.bgSilver, Theme.btnM20, Theme.radius8]}>
-                                <Text style={[Theme.f12, Theme.fontSemiBold]} >{e}</Text>
-                            </View>
+                                <Text style={[Theme.f12, Theme.fontSemiBold]} >{e}
+                                    {" "}<Icon name="close" color="#2c3e50" size={12} />
+                                </Text>
+                            </TouchableOpacity>
                         )}
                     </View>
                     <View style={[Theme.flxDirectionRow]}>
@@ -92,16 +118,18 @@ const DesignationDetails = ({ navigation }) => {
                     </View>
                     <View style={[Theme.flxDirectionRow, Theme.flxWrap]}>
                         {skills.map((e, index) =>
-                            <View
+                            <TouchableOpacity
                                 key={index}
                                 style={[Theme.mr10, Theme.bgSilver, Theme.btnM20, Theme.radius8]}>
-                                <Text style={[Theme.f12, Theme.fontSemiBold]} >{e}</Text>
-                            </View>
+                                <Text style={[Theme.f12, Theme.fontSemiBold]} >{e}
+                                    {" "}<Icon name="close" color="#2c3e50" size={12} />
+                                </Text>
+                            </TouchableOpacity>
                         )}
                     </View>
                     <View style={[Theme.center]}>
                         <TouchableOpacity
-                            onPressOut={routeToTourEnd}
+                            onPressOut={submitDesignation}
                             style={[
                                 Theme.bgOrange,
                                 style.nextBtn,

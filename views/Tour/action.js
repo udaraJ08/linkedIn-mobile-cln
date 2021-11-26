@@ -29,10 +29,10 @@ export const designationListen = (data) => {
     }
 }
 
-export const userRegisterListen = (data) => {
+export const userRegisterListen = (user) => {
     return {
         type: USER_REGISTER_LISTEN,
-        data
+        user,
     }
 }
 

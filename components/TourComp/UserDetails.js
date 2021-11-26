@@ -5,12 +5,23 @@ import { Input, TextArea, StatusBar } from "native-base"
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import moment from 'moment'
+import { aboutListen } from '../../views/Tour/action'
+import { useDispatch } from 'react-redux'
 
 const UserDetails = ({ navigation }) => {
+
+    //form states
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [mobileNo, setMobileNo] = useState("");
+    const [aboutMe, setAboutMe] = useState("");
 
     ///hooks-handling
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [dob, setDob] = useState("Nov 22nd 98");
+
+    const dispatch = useDispatch();
 
     //routing
     const routeToDesgination = () => {
@@ -31,11 +42,24 @@ const UserDetails = ({ navigation }) => {
         hideDatePicker();
     };
 
+    //dispatching
+    const submitUserDetails = () => {
+        dispatch(aboutListen({
+            firstName,
+            lastName,
+            dob,
+            email,
+            mobileNo,
+            aboutMe
+        }));
+        routeToDesgination();
+    }
+
     return (
         <View style={Theme.mainScreen} >
             <StatusBar animated={true} backgroundColor="#10ac84" />
             <View style={[Theme.flex1, Theme.center]}>
-                <Text style={[Theme.f18]}>Let's fetch some
+                <Text style={[Theme.f17]}>Let's fetch some
                     <Text style={[Theme.fontBold, Theme.txtSuccess, { fontSize: 23 }]}> ABOUT</Text>
                 </Text>
             </View>
@@ -44,11 +68,15 @@ const UserDetails = ({ navigation }) => {
                     <View style={[Theme.flxDirectionRow, Theme.mb30]}>
                         <View style={[Theme.flex1, Theme.pr10]}>
                             <Text style={[Theme.pb10]}>First Name <Text style={Theme.txtDanger}>*</Text></Text>
-                            <Input placeholder="Add first name" style={[Theme.inputBorder]} />
+                            <Input
+                                onChangeText={e => setFirstName(e)}
+                                placeholder="Add first name" style={[Theme.inputBorder]} />
                         </View>
                         <View style={[Theme.flex1]}>
                             <Text style={[Theme.pb10]}>Last Name <Text style={Theme.txtDanger}>*</Text></Text>
-                            <Input placeholder="Add last name" style={[Theme.inputBorder]} />
+                            <Input
+                                onChangeText={e => setLastName(e)}
+                                placeholder="Add last name" style={[Theme.inputBorder]} />
                         </View>
                     </View>
                     <View style={[Theme.flxDirectionRow, Theme.mb30]}>
@@ -78,19 +106,25 @@ const UserDetails = ({ navigation }) => {
                     </View>
                     <View style={[Theme.mb30]}>
                         <Text style={[Theme.pb10]}>Email <Text style={Theme.txtDanger}>*</Text></Text>
-                        <Input placeholder="udaraj08@gmail.com" style={[Theme.inputBorder]} />
+                        <Input
+                            onChangeText={e => setEmail(e)}
+                            placeholder="udaraj08@gmail.com" style={[Theme.inputBorder]} />
                     </View>
                     <View style={[Theme.mb30]}>
                         <Text style={[Theme.pb10]}>Mobile No. <Text style={Theme.txtDanger}>*</Text></Text>
-                        <Input placeholder="0712345678" style={[Theme.inputBorder]} />
+                        <Input
+                            onChangeText={e => setMobileNo(e)}
+                            placeholder="0712345678" style={[Theme.inputBorder]} />
                     </View>
                     <View style={[Theme.mb20]}>
                         <Text style={[Theme.pb10]}>About me</Text>
-                        <TextArea style={[Theme.inputBorder]} placeholder="Let's say a little about you..."></TextArea>
+                        <TextArea
+                            onChangeText={e => setAboutMe(e)}
+                            style={[Theme.inputBorder]} placeholder="Let's say a little about you..."></TextArea>
                     </View>
                     <View style={[Theme.center]}>
                         <TouchableOpacity
-                            onPressOut={routeToDesgination}
+                            onPressOut={submitUserDetails}
                             style={[
                                 Theme.bgSuccess,
                                 style.nextBtn,

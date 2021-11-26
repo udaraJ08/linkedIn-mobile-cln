@@ -1,4 +1,5 @@
-import { ABOUT_LISTEN, DESIGNATION_LISTEN, PROFILE_IMAGE_LISTEN } from "./const";
+import { DEFAULT, SUCCESS } from "./config.const";
+import { ABOUT_LISTEN, DESIGNATION_LISTEN, PROFILE_IMAGE_LISTEN, USER_REGISTER_SUCCESS } from "./const";
 
 const initialState = {
     image: "",
@@ -12,7 +13,10 @@ const initialState = {
 
     designation: "",
     education: [],
-    skills: []
+    skills: [],
+
+    profileCreated: false,
+    profileCompleted: false,
 }
 
 const tourReducer = (state = initialState, action) => {
@@ -47,8 +51,14 @@ const tourReducer = (state = initialState, action) => {
             return {
                 ...state,
                 designation,
-                education,
-                skills
+                education: [...education],
+                skills: [...skills]
+            }
+        }
+        case USER_REGISTER_SUCCESS: {
+            return {
+                ...state,
+                profileCreated: true
             }
         }
         default: return state;

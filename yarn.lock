@@ -1663,10 +1663,20 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-13.0.1.tgz#cc93c7705aac28af4bf9fe676e900e11cf7b12ac"
   integrity sha512-oZ0KqAjjbqT6It7/zAVIbQu+M4t1noKkAgZ76G12GHHo1mtVCjBTGDpej+J2oqbaEDDDuBAxq8lAhRxf8T+R4g==
 
+"@react-native-firebase/firestore@^13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-13.0.1.tgz#76463fadb4ac63aa0127a5ae3957bb68108fe3b6"
+  integrity sha512-kOkoQvdYU5W9iAZX9SAN7aoNvZpZZ3CywzoQer0uHp2gFwm02TCeOeEGOVhsbuh+D4uRdD3k5My/zV97OWTlFw==
+
 "@react-native-firebase/messaging@^13.0.1":
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-13.0.1.tgz#cc10a99e75e155ab566d2f112dedb20d1a50f4f7"
   integrity sha512-EYEExRXtGrDgYciWPDvCKXGVQLXEAErE1KFWglzcEBjFOyp9NGf0kj1Gd54r03g7BN1JybK8AC+pWgkTTkFf5A==
+
+"@react-native-firebase/storage@^13.0.1":
+  version "13.0.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/storage/-/storage-13.0.1.tgz#5be504dc56966bc9b0baafdc0d1c4d8e44e9c86d"
+  integrity sha512-85g8PH4BN15uq7qZ6Ul4w3HdIQV/5H+uVyeKuKt57XtJxVVJRFfwgEekOayLyT2GHnxkjf13oMseZSeaGqTHQQ==
 
 "@react-native-google-signin/google-signin@^7.0.1":
   version "7.0.1"
@@ -6855,6 +6865,11 @@ react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-native-animated-spinkit@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/react-native-animated-spinkit/-/react-native-animated-spinkit-1.5.2.tgz#b1c00ecbadf48634273e6a843f8dfbcb7c006186"
+  integrity sha512-YCQGR3HzEQvyaAnepiyf/hv88Sta3UIZ2CFZPtFqwu+VbFJfMgjJZniOx4157TuR5AAYajEJP9Fgy+JLIU3jzQ==
 
 react-native-codegen@^0.0.7:
   version "0.0.7"

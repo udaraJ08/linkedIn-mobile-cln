@@ -93,7 +93,7 @@ const Theme = StyleSheet.create({
         fontSize: 15
     },
     f17: {
-        fontSize: 17
+        fontSize: 18
     },
     f20: {
         fontSize: 20
@@ -302,6 +302,23 @@ const Theme = StyleSheet.create({
         paddingBottom: 50
     },
 
+    //marging-top
+    mt10: {
+        marginTop: 10
+    },
+    mt20: {
+        marginTop: 20
+    },
+    mt30: {
+        marginTop: 30
+    },
+    mt40: {
+        marginTop: 40
+    },
+    mt50: {
+        marginTop: 50
+    },
+
     //margin-bottom
     mb10: {
         marginBottom: 10
@@ -334,6 +351,23 @@ const Theme = StyleSheet.create({
     },
     mr50: {
         marginRight: 50
+    },
+
+    //marging-left
+    ml10: {
+        marginLeft: 10
+    },
+    ml20: {
+        marginLeft: 20
+    },
+    ml30: {
+        marginLeft: 30
+    },
+    ml40: {
+        marginLeft: 40
+    },
+    ml50: {
+        marginLeft: 50
     },
 
     //opacity
