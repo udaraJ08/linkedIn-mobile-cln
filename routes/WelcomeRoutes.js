@@ -35,9 +35,7 @@ const WelcomeRoutes = () => {
             gestureEnabled: false,
           }} name="app-route" component={AppRoute} />
         <Stack.Screen
-          options={{
-            gestureEnabled: false,
-          }} name="profile" component={Profile} />
+          name="profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

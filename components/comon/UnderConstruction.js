@@ -1,15 +1,13 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
-import Theme from '../../assets/css/theme.style'
 
-const MyNetwork = () => {
+const UnderConstruction = () => {
     return (
-        <View style={[Theme.mainScreen, Theme.center, Theme.whiteBack]}>
+        <View>
             <Image
                 style={[styles.mainImage]}
                 source={require('../../assets/images/construction.png')}
             />
-            <Text style={[Theme.f17, Theme.mt10, Theme.fontBold]}>My Network is under development</Text>
         </View>
     )
 }
@@ -17,8 +15,9 @@ const MyNetwork = () => {
 const styles = StyleSheet.create({
     mainImage: {
         width: "100%",
-        height: "30%",
+        height: "50%",
     },
 
 })
-export default MyNetwork
+
+export default UnderConstruction

@@ -24,6 +24,9 @@ const Theme = StyleSheet.create({
     bgDark: {
         backgroundColor: "#2c3e50"
     },
+    bgSemiDark: {
+        backgroundColor: "#596275"
+    },
     bgOrange: {
         backgroundColor: "#fd9644"
     },
@@ -32,6 +35,9 @@ const Theme = StyleSheet.create({
     },
     bgSilver: {
         backgroundColor: "#bdc3c7"
+    },
+    bgTransparent: {
+        backgroundColor: "transparent"
     },
 
     //Font-colors
@@ -130,16 +136,24 @@ const Theme = StyleSheet.create({
         alignItems: "center"
     },
 
+    justifyCenter: {
+        justifyContent: "center"
+    },
+
+    alignItemsCenter: {
+        alignItems: "center"
+    },
+
     flxDirectionRow: {
         flexDirection: 'row'
     },
 
-    flxWrap: {
-        flexWrap: "wrap"
-    },
-
     jstfyBetween: {
         justifyContent: "space-between"
+    },
+
+    flxWrap: {
+        flexWrap: "wrap"
     },
 
     //Dimensions

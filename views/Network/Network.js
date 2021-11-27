@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import Theme from '../../assets/css/theme.style'
 
 const Network = () => {
@@ -9,5 +9,13 @@ const Network = () => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    mainImage: {
+        width: "100%",
+        height: "30%",
+    },
+
+})
 
 export default Network

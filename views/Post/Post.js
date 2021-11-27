@@ -1,13 +1,25 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import Theme from '../../assets/css/theme.style'
 
 const Post = () => {
     return (
-        <View style={[Theme.mainScreen, Theme.center]}>
-            <Text>This is the POST</Text>
+        <View style={[Theme.mainScreen, Theme.center, Theme.whiteBack]}>
+            <Image
+                style={[styles.mainImage]}
+                source={require('../../assets/images/construction.png')}
+            />
+            <Text style={[Theme.f17, Theme.mt10, Theme.fontBold]}>Posts is under development</Text>
         </View>
     )
 }
 
-export default Network
+const styles = StyleSheet.create({
+    mainImage: {
+        width: "100%",
+        height: "30%",
+    },
+
+})
+
+export default Post;

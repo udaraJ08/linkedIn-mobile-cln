@@ -1,8 +1,13 @@
 import React from 'react'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import Profile from '../views/Profile/Profile';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Feed from '../views/Feed/Feed';
+import MyNetwork from '../views/MyNetwork/MyNetwork';
+import Notifications from '../views/Notifications/Notifications';
+import Jobs from '../views/Jobs/Jobs';
+import Post from '../views/Post/Post';
+import { CardStyleInterpolators } from '@react-navigation/stack';
+
 import { StatusBar } from 'native-base';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -16,6 +21,14 @@ const AppRoutes = () => {
                 activeColor="#2f3640"
                 inactiveColor="#596275"
                 barStyle={[{ backgroundColor: '#f5f6fa' }]}
+                shifting="true"
+                screenOptions={({ route, navigation }) => ({
+                    headerShown: false,
+                    gestureEnabled: true,
+                    cardOverlayEnabled: true,
+                    gestureDirection: 'horizontal',
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                })}
             >
                 <Tab.Screen
                     options={{
@@ -33,7 +46,7 @@ const AppRoutes = () => {
                             <Icon name="users" color={color} size={22} />
                         ),
                     }}
-                    name="my-network" component={Profile} />
+                    name="my-network" component={MyNetwork} />
                 <Tab.Screen
                     options={{
                         tabBarLabel: 'Post',
@@ -41,7 +54,7 @@ const AppRoutes = () => {
                             <Icon name="plus-square" color={color} size={22} />
                         ),
                     }}
-                    name="post" component={Profile} />
+                    name="post" component={Post} />
                 <Tab.Screen
                     options={{
                         tabBarLabel: 'Notifications',
@@ -49,7 +62,7 @@ const AppRoutes = () => {
                             <Icon name="bell" color={color} size={22} />
                         ),
                     }}
-                    name="notications" component={Profile} />
+                    name="notications" component={Notifications} />
                 <Tab.Screen
                     options={{
                         tabBarLabel: 'Jobs',
@@ -57,7 +70,7 @@ const AppRoutes = () => {
                             <Icon name="suitcase" color={color} size={22} />
                         ),
                     }}
-                    name="jobs" component={Profile} />
+                    name="jobs" component={Jobs} />
             </Tab.Navigator>
         </>
     )
