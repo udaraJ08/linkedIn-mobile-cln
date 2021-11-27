@@ -8,7 +8,7 @@ import { checkUserListen } from '../../views/Login/action';
 const Welcome = ({ navigation }) => {
 
   ///redux selectors
-  const { logged } = useSelector(state => state.loginReducer);
+  const { logged, user, created } = useSelector(state => state.loginReducer);
 
   ///hooks calling
   const dispatch = useDispatch();
@@ -16,15 +16,23 @@ const Welcome = ({ navigation }) => {
   useEffect(() => {
     dispatch(checkUserListen());
     routeHandler();
+    console.log(created);
   }, [logged]);
 
   ///navigations
   const routeHandler = () => {
-    if (logged) navigateToFeed()
+    if (created && logged) navigateToApp()
+    else if (logged) {
+      navigateToFeed();
+    }
   }
 
   const navigateToFeed = () => {
     navigation.navigate("tour");
+  }
+
+  const navigateToApp = () => {
+    navigation.navigate("app-route");
   }
 
   const navigateToLogin = () => {

@@ -1,9 +1,10 @@
-import { LOGIN_SUCCESS } from "./const";
+import { LOGIN_SUCCESS, PROFILE_CREATE_CHECK_SUCCESS } from "./const";
 
 const init = {
     user: {},
     sync: true,
-    logged: false
+    logged: false,
+    created: false
 }
 
 const loginReducer = (state = init, action) => {
@@ -15,6 +16,13 @@ const loginReducer = (state = init, action) => {
                 user: action.data,
                 sync: true,
                 logged: true
+            }
+        }
+        case PROFILE_CREATE_CHECK_SUCCESS: {
+
+            return {
+                ...state,
+                created: true
             }
         }
         default: return state

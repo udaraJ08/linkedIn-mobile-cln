@@ -69,6 +69,10 @@ const Theme = StyleSheet.create({
     txtDark: {
         color: "#2f3640"
     },
+
+    txtSemiDark: {
+        color: "#596275"
+    },
     //font-styles
     fontThin: {
         fontFamily: "sans-serif-light",
@@ -143,6 +147,10 @@ const Theme = StyleSheet.create({
         height: "100%",
     },
 
+    w100: {
+        width: "100%"
+    },
+
     ///flex
     flex1: {
         flex: 1
@@ -158,6 +166,15 @@ const Theme = StyleSheet.create({
     },
     flex5: {
         flex: 5
+    },
+    flex6: {
+        flex: 6
+    },
+    flex7: {
+        flex: 7
+    },
+    flex8: {
+        flex: 8
     },
 
     //Main-topics

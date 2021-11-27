@@ -38,11 +38,6 @@ const TourRoutes = () => {
                         gestureEnabled: false,
                     }}
                     name="tour-end" component={TourEnd} />
-                <Stack.Screen
-                    options={{
-                        gestureEnabled: false,
-                    }}
-                    name="profile" component={Profile} />
             </Stack.Navigator>
 
         </>

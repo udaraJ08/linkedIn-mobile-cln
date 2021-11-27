@@ -11,10 +11,12 @@ const DataCook = ({ navigation }) => {
 
     //selector
     const user = useSelector(state => state.tourReducer);
+    const obj = useSelector(state => state.loginReducer);
     const dispatch = useDispatch();
 
     //hooks
     useEffect(() => {
+        user.email = obj.user.additionalUserInfo.profile.email;
         if (!user.profileCreated) dispatch(userRegisterListen(user))
         routeHandler()
     }, [user]);
@@ -23,7 +25,7 @@ const DataCook = ({ navigation }) => {
         const { profileCreated } = user;
 
         if (profileCreated)
-            navigation.navigate("profile");
+            navigation.navigate("app-route");
     }
 
     return (
