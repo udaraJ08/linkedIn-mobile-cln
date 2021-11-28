@@ -8,6 +8,7 @@ import DesignationDetails from '../components/TourComp/DesignationDetails';
 import TourEnd from '../components/TourComp/TourEnd';
 import DataCook from '../components/TourComp/DataCook';
 import Profile from '../views/Profile/Profile';
+import { StatusBar } from 'react-native';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,7 @@ const TourRoutes = () => {
 
     return (
         <>
+            <StatusBar animated={true} backgroundColor="#ecf0f1" />
             <Stack.Navigator
                 shifting="true"
                 screenOptions={({ route, navigation }) => ({

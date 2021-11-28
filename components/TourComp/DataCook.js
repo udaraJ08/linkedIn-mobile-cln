@@ -5,7 +5,6 @@ import Theme from '../../assets/css/theme.style'
 import { useDispatch, useSelector } from 'react-redux'
 import { Pulse } from 'react-native-animated-spinkit'
 import { userRegisterListen } from '../../views/Tour/action'
-import { DEFAULT, SUCCESS } from '../../views/Tour/config.const'
 
 const DataCook = ({ navigation }) => {
 
@@ -16,7 +15,6 @@ const DataCook = ({ navigation }) => {
 
     //hooks
     useEffect(() => {
-        user.email = obj.user.additionalUserInfo.profile.email;
         if (!user.profileCreated) dispatch(userRegisterListen(user))
         routeHandler()
     }, [user]);
@@ -25,12 +23,11 @@ const DataCook = ({ navigation }) => {
         const { profileCreated } = user;
 
         if (profileCreated)
-            navigation.navigate("app-route");
+            navigation.navigate("tour-end");
     }
 
     return (
         <View style={[Theme.mainScreen, Theme.center]}>
-            <StatusBar animated={true} backgroundColor="#3498db" />
             <Text style={[Theme.f25, Theme.fontThin, Theme.mb10]}>COOKING YOUR PROFILE</Text>
             <Text style={[Theme.f15, Theme.fontThin]}>This will take seconds</Text>
             <Image

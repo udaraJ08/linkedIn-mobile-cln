@@ -1,7 +1,19 @@
 export const LOGIN_LISTEN = "login/LOGIN_LISTEN";
 export const LOGIN_SUCCESS = "login/LOGIN__SUCCESS";
+export const LOGIN_CANCELED = "login/LOGIN_CANCELED";
+
+export const SIGNIN_EMPW_LISTEN = "login/SIGNIN_EMPW_LISTEN";
+export const SIGNIN_EMPW_SUCCESS = "login/SIGNIN_EMPW_SUCCESS";
+
+export const LOGIN_EMPW_LISTEN = "login/LOGIN_EMPW_LISTEN";
+export const LOGIN_EMPW_SUCCESS = "login/LOGIN_EMPW_SUCCESS";
 
 export const CHECK_CUR_USER_LISTEN = "login/CHECK_CUR_USER_LISTEN";
 
 export const PROFILE_CREATE_CHECK_LISTEN = "login/PROFILE_CREATE_CHECK_LISTEN";
 export const PROFILE_CREATE_CHECK_SUCCESS = "login/PROFILE_CREATE_CHECK_SUCCESS";
+
+export const LOGOUT_LISTEN = "login/LOGOUT_LISTEN";
+export const LOGOUT_SUCCESS = "login/LOGOUT_SUCCESS";
+
+export const CLEAR_CREATE = "login/CLEAR_CREATE";

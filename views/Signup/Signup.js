@@ -1,13 +1,25 @@
-import {Button, Checkbox, Input} from 'native-base';
-import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
+import { Button, Checkbox, Input } from 'native-base';
+import React, { useState } from 'react';
+import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import Theme from '../../assets/css/theme.style';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useDispatch } from 'react-redux';
+import { signInWithEmailPasswordListen } from '../Login/action';
 
-const Signup = ({navigation}) => {
+const Signup = ({ navigation }) => {
   ///State Handling
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [rePassword, setRePassword] = useState();
+
+  const dispatch = useDispatch();
 
   ///API calling
+  const signInWithEmailPassword = () => {
+
+    if (validateForm())
+      dispatch(signInWithEmailPasswordListen(email, password));
+  }
 
   ///navigation
   const routeToWelcome = () => {
@@ -17,6 +29,21 @@ const Signup = ({navigation}) => {
   const routeToLogin = () => {
     navigation.navigate('login');
   };
+
+  //lead functions
+  const validateForm = () => {
+
+    if (email.toString().trim().length > 0 && password.toString().trim().length > 0 && rePassword.toString().trim().length > 0) {
+      if (password === rePassword)
+        return true;
+      else {
+        alert("Passwords mismatch");
+        return false;
+      }
+    }
+    else return false;
+
+  }
 
   return (
     <View style={[Theme.mainScreen, Theme.whiteBack, Theme.center]}>
@@ -32,6 +59,7 @@ const Signup = ({navigation}) => {
           <View>
             <Text style={style.loginlabel}>username</Text>
             <Input
+              onChangeText={e => setEmail(e)}
               variant="outline"
               borderColor={'#3498db'}
               placeholder="test123@gmail.com"
@@ -39,6 +67,7 @@ const Signup = ({navigation}) => {
             <Text />
             <Text style={style.loginlabel}>password</Text>
             <Input
+              onChangeText={e => setPassword(e)}
               type="password"
               borderColor={'#3498db'}
               variant="outline"
@@ -47,6 +76,7 @@ const Signup = ({navigation}) => {
             <Text />
             <Text style={style.loginlabel}>Re-type password</Text>
             <Input
+              onChangeText={e => setRePassword(e)}
               type="password"
               borderColor={'#3498db'}
               variant="outline"
@@ -54,29 +84,31 @@ const Signup = ({navigation}) => {
             />
           </View>
           <View style={style.btnContainer}>
-            <Button style={style.signinBtn}>SIGNIN</Button>
+            <Button
+              onPressOut={signInWithEmailPassword}
+              style={style.signinBtn}>SIGNIN</Button>
           </View>
           <Text />
-          <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+          <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
             <Checkbox
               accessibilityLabel="Agree to policies"
               defaultIsChecked={false}
             />
-            <Text style={{marginLeft: 10}}>I Agree to all the policies.</Text>
+            <Text style={{ marginLeft: 10 }}>I Agree to all the policies.</Text>
           </View>
           <View style={style.textBtnContainer}>
             <TouchableOpacity
               style={style.textBtn}
               onPressOut={() => routeToWelcome()}>
               <Icon name="long-arrow-left" color="#0072b1" size={20} />
-              <Text style={[style.textBtnText, {marginLeft: 5}]}>
+              <Text style={[style.textBtnText, { marginLeft: 5 }]}>
                 Back to home
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={[style.textBtn]}
               onPressOut={() => routeToLogin()}>
-              <Text style={[style.textBtnText, {margin: 0, marginRight: 5}]}>
+              <Text style={[style.textBtnText, { margin: 0, marginRight: 5 }]}>
                 To Login
               </Text>
               <Icon name="long-arrow-right" color="#0072b1" size={20} />

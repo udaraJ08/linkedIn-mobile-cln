@@ -1,5 +1,5 @@
 import { Avatar } from 'native-base'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { useSelector } from 'react-redux'
 import Theme from '../../assets/css/theme.style'
@@ -14,9 +14,10 @@ const UploadAvatar = ({ navigation }) => {
     //hooks
     const dispatch = useDispatch();
 
-    const [fileObj, setFileObj] = useState("");
-
+    //selectors
     const { user } = useSelector(state => state.loginReducer)
+
+    const [fileObj, setFileObj] = useState("");
 
     //routings
     const routeToUserDet = () => {
@@ -53,10 +54,6 @@ const UploadAvatar = ({ navigation }) => {
         }
     }
 
-    const avatarAvailability = () => {
-        return user.additionalUserInfo.profile.picture ? false : false
-    }
-
     const imageAvailability = () => {
 
         return fileObj ? true : false
@@ -68,9 +65,7 @@ const UploadAvatar = ({ navigation }) => {
                 <Text style={[style.txtAvatar, Theme.txtPrimary]}> AVATAR</Text>
             </Text>
             <Avatar
-                source={avatarAvailability() ? {
-                    uri: user.additionalUserInfo.profile.picture,
-                } : require("../../assets/images/fallback.jpg")}
+                source={require("../../assets/images/fallback.jpg")}
                 size="40"
             />
             <Text />

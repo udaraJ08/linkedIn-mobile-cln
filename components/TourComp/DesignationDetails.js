@@ -54,10 +54,9 @@ const DesignationDetails = ({ navigation }) => {
 
     return (
         <View style={Theme.mainScreen} >
-            <StatusBar animated={true} backgroundColor="#fd9644" />
             <View style={[Theme.flex1, Theme.center]}>
                 <Text style={[Theme.f18]}>Let's fetch some
-                    <Text style={[Theme.fontBold, Theme.txtOrange, { fontSize: 23 }]}> DESIGNATION</Text>
+                    <Text style={[Theme.fontBold, Theme.linkedInFontColor, Theme.f23]}> DESIGNATION</Text>
                 </Text>
             </View>
             <View style={[Theme.flex5]}>
@@ -131,7 +130,7 @@ const DesignationDetails = ({ navigation }) => {
                         <TouchableOpacity
                             onPressOut={submitDesignation}
                             style={[
-                                Theme.bgOrange,
+                                Theme.linkedinBack,
                                 style.nextBtn,
                                 Theme.center,
                                 Theme.flxDirectionRow,

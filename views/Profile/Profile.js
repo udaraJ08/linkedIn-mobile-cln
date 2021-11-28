@@ -1,20 +1,45 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, TouchableOpacity, ScrollView, ImageBackground, Text, StyleSheet } from 'react-native'
 import Theme from '../../assets/css/theme.style'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { TextInput } from 'react-native-paper';
 import { Avatar } from 'native-base';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutListen } from '../Login/action';
 const cover = { uri: "https://wallpaper.dog/large/5477484.jpg" };
-
-const fallBack = { uri: "https://static.statusqueen.com/mobilewallpaper/thumbnail/mobile_wallpaper__1-471.jpg" };
 
 const Profile = ({ navigation }) => {
 
-    //ROUTING
+    //SELECTORS
+    const { userData, logged } = useSelector(state => state.loginReducer);
+    const orUserData = userData ? userData[0]._data : null;
+
+    const fallBack = { uri: orUserData ? orUserData.image : "" };
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log(logged);
+        if (!logged)
+            routeToLogin();
+    }, [logged]);
+
     const routeToHome = () => {
         navigation.navigate("home");
     }
+
+    const routeToLogin = () => {
+        navigation.navigate("login");
+        // navigation.popToTop();
+    }
+
+    //Dispatch
+    const logoutUser = () => {
+        routeToLogin();
+        dispatch(logoutListen());
+    }
+
+    //LEAD FUNCTIONS
 
     return (
         <View style={[Theme.mainScreen, Theme.whiteBack]}>
@@ -32,7 +57,9 @@ const Profile = ({ navigation }) => {
                     <View style={[Theme.flex4]}></View>
                 </View>
                 <View style={[Theme.flex1, Theme.ml20, Theme.center]}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPressOut={logoutUser}
+                    >
                         <Icon name="cog" size={20} />
                     </TouchableOpacity>
                 </View>
@@ -55,33 +82,34 @@ const Profile = ({ navigation }) => {
                     </View>
                     <View style={[Theme.p10]}>
                         <View>
-                            <Text style={[Theme.f25, Theme.fontSemiBold, Theme.txtDark]}>U Janith Wanniarachchi</Text>
-                            <Text style={[Theme.f15, Theme.txtDark]}>Intern Software Engineer at Fcode labs</Text>
+                            <Text style={[Theme.f25, Theme.fontSemiBold, Theme.txtDark]}>
+                                {orUserData ? orUserData.firstName : "unknown"}{" "}{orUserData ? orUserData.lastName : ""}
+                            </Text>
+                            <Text style={[Theme.f15, Theme.txtDark]}>{orUserData ? orUserData.designation : "unknown"}</Text>
                         </View>
                         <View>
                             <Text style={[Theme.mt10, style.txtTalk]}>
-                                Talks about #flutter #ReactNative #ReactJS #NodeJS #GraphQL #AWS
+                                Talks about
+                                {
+                                    orUserData &&
+                                    orUserData.skills.map((e, index) => <Text key={index} style={[Theme.mr50]}>#{e}{" "}</Text>)
+
+                                }
                             </Text>
                         </View>
                         <View style={[{ alignItems: 'flex-start' }, Theme.flxDirectionRow, Theme.mt10]}>
-                            <View style={[Theme.mt10, Theme.mr10, style.txtTalk, Theme.flxDirectionRow, Theme.center]}>
-                                <Icon
-                                    color={"#2f3640"}
-                                    style={[{ marginRight: 5 }]} name="circle" size={5} />
-                                <Text style={[Theme.txtDark, Theme.f12]}>IJSE</Text>
-                            </View>
-                            <View style={[Theme.mt10, Theme.mr10, style.txtTalk, Theme.flxDirectionRow, Theme.center]}>
-                                <Icon
-                                    color={"#2f3640"}
-                                    style={[{ marginRight: 5 }]} name="circle" size={5} />
-                                <Text style={[Theme.txtDark, Theme.f12]}>PWC</Text>
-                            </View>
-                            <View style={[Theme.mt10, Theme.mr10, style.txtTalk, Theme.flxDirectionRow, Theme.center]}>
-                                <Icon
-                                    color={"#2f3640"}
-                                    style={[{ marginRight: 5 }]} name="circle" size={5} />
-                                <Text style={[Theme.txtDark, Theme.f12]}>AIESEC</Text>
-                            </View>
+                            {
+                                orUserData &&
+                                orUserData.education.map((e, index) => {
+                                    return <View key={index} style={[Theme.mt10, Theme.mr10, style.txtTalk, Theme.flxDirectionRow, Theme.center]}>
+                                        <Icon
+                                            color={"#2f3640"}
+                                            style={[{ marginRight: 5 }]} name="circle" size={5} />
+                                        <Text style={[Theme.txtDark, Theme.f12]}>{e}</Text>
+                                    </View>
+                                })
+
+                            }
                         </View>
                         <View style={[Theme.flxDirectionRow]}>
                             <Text style={[style.mr4]}>Colombo,</Text>
@@ -119,10 +147,16 @@ const Profile = ({ navigation }) => {
                         </View>
                         <View style={[Theme.mt20, style.bgSection, Theme.p20]}>
                             <View>
-                                <Text style={[Theme.fontBold, Theme.txtDark, Theme.f15]}>Udara's Skills</Text>
+                                <Text style={[Theme.fontBold, Theme.txtDark, Theme.f15]}>{orUserData ? orUserData.firstName : ""}'s Skills</Text>
                             </View>
                             <View style={[Theme.mt20]}>
-                                <Text style={[Theme.txtSemiDark]}>Web Developing, Mobile apps developing, Cloud services</Text>
+                                <Text style={[Theme.txtSemiDark]}>
+                                    {
+                                        orUserData && orUserData.skills.map((e, index) => {
+                                            return `#${e} `
+                                        })
+                                    }
+                                </Text>
                             </View>
                             <View style={[Theme.mt10, { justifyContent: 'flex-end' }, Theme.flxDirectionRow]}>
                                 <TouchableOpacity>
@@ -137,7 +171,8 @@ const Profile = ({ navigation }) => {
                         <View style={[Theme.p10, Theme.whiteBack, Theme.radius10]}>
                             <View>
                                 <Text style={[Theme.fontBold, Theme.txtDark, Theme.mb10, Theme.f17]}>About</Text>
-                                <Text style={[style.txtTalk, Theme.txtSemiDark]}>I'm an undergraduate🎓🎓 software engineering💻 student. I have a huge passion for software enginnering.😍 Also I'd build several apps in various sections.📱
+                                <Text style={[style.txtTalk, Theme.txtSemiDark]}>
+                                    {orUserData ? orUserData.aboutMe : ""}
                                 </Text>
                                 <View style={[Theme.mt10, { justifyContent: 'flex-end' }, Theme.flxDirectionRow]}>
                                     <TouchableOpacity>
@@ -188,26 +223,20 @@ const Profile = ({ navigation }) => {
                                         color={"#596275"}
                                         style={[style.mr4, style.ml4]} name="pencil" size={20} />
                                 </View>
-                                <View style={[Theme.flxDirectionRow, Theme.mt10, style.hrLine, Theme.pb20, Theme.pt10]}>
-                                    <View style={[Theme.flex1, Theme.mr10]}>
-                                        <Icon
-                                            color={"#2c3e50"}
-                                            style={[style.mr4, style.ml4]} name="university" size={30} />
-                                    </View>
-                                    <View style={[Theme.flex6, Theme.justifyCenter]}>
-                                        <Text style={[Theme.txtSemiDark, Theme.fontSemiBold]}>Undergraduate at IJSE</Text>
-                                    </View>
-                                </View>
-                                <View style={[Theme.flxDirectionRow, Theme.mt10, style.hrLine, Theme.pb20, Theme.pt10]}>
-                                    <View style={[Theme.flex1, Theme.mr10]}>
-                                        <Icon
-                                            color={"#2c3e50"}
-                                            style={[style.mr4, style.ml4]} name="university" size={30} />
-                                    </View>
-                                    <View style={[Theme.flex6, Theme.justifyCenter]}>
-                                        <Text style={[Theme.txtSemiDark, Theme.fontSemiBold]}>Prince of wales college</Text>
-                                    </View>
-                                </View>
+                                {
+                                    orUserData && orUserData.education.map((e, index) => {
+                                        return <View key={index} style={[Theme.flxDirectionRow, Theme.mt10, style.hrLine, Theme.pb20, Theme.pt10]}>
+                                            <View style={[Theme.flex1, Theme.mr10]}>
+                                                <Icon
+                                                    color={"#2c3e50"}
+                                                    style={[style.mr4, style.ml4]} name="university" size={30} />
+                                            </View>
+                                            <View style={[Theme.flex6, Theme.justifyCenter]}>
+                                                <Text style={[Theme.txtSemiDark, Theme.fontSemiBold]}>{e}</Text>
+                                            </View>
+                                        </View>
+                                    })
+                                }
                             </View>
                         </View>
 
@@ -228,7 +257,7 @@ const Profile = ({ navigation }) => {
                                     </View>
                                     <View style={[Theme.flex6, Theme.justifyCenter]}>
                                         <Text style={[Theme.f15, Theme.fontBold, Theme.txtSemiDark]}>Phone</Text>
-                                        <Text style={[Theme.fontSemiBold]}>078 320 81 11</Text>
+                                        <Text style={[Theme.fontSemiBold]}>{orUserData ? orUserData.mobileNo : ""}</Text>
                                     </View>
                                 </View>
                                 <View style={[Theme.flxDirectionRow, Theme.mt10, style.hrLine, Theme.pb20, Theme.pt10]}>
@@ -239,7 +268,7 @@ const Profile = ({ navigation }) => {
                                     </View>
                                     <View style={[Theme.flex6, Theme.justifyCenter]}>
                                         <Text style={[Theme.f15, Theme.fontBold, Theme.txtSemiDark]}>Email</Text>
-                                        <Text style={[Theme.fontSemiBold]}>Udaraj08@gmail.com</Text>
+                                        <Text style={[Theme.fontSemiBold]}>{orUserData ? orUserData.email : ""}</Text>
                                     </View>
                                 </View>
                             </View>

@@ -8,18 +8,20 @@ import Signup from '../views/Signup/Signup';
 import Tour from '../views/Tour/Tour';
 import AppRoute from './AppRoutes';
 import Profile from '../views/Profile/Profile';
+import { StatusBar } from 'react-native';
 
 const Stack = createStackNavigator();
 
 const WelcomeRoutes = () => {
   return (
     <NavigationContainer>
+      <StatusBar animated={true} backgroundColor="#ecf0f1" />
       <Stack.Navigator
         shifting="true"
         screenOptions={({ route, navigation }) => ({
           headerShown: false,
           gestureEnabled: true,
-          cardOverlayEnabled: true,
+          cardOverlayEnabled: false,
           gestureDirection: 'horizontal',
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         })}>

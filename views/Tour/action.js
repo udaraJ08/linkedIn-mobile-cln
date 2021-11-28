@@ -39,6 +39,7 @@ export const userRegisterListen = (user) => {
 export const userRegisterSuccess = (data) => {
 
     return {
-        type: USER_REGISTER_SUCCESS
+        type: USER_REGISTER_SUCCESS,
+        data
     }
 }

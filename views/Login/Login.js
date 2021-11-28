@@ -1,26 +1,55 @@
 import { Button, Input } from 'native-base';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native';
 import Theme from '../../assets/css/theme.style';
 import { GoogleSigninButton, GoogleSignin } from '@react-native-google-signin/google-signin';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { loginListen } from './action';
+import { checkUserListen, loginListen, loginWithEmailPasswordListen, signInWithEmailPasswordListen } from './action';
 
 const Login = ({ navigation }) => {
 
+  //selectors
+  const { logged, user, created, canceled } = useSelector(state => state.loginReducer);
+
   ///Hooks calling
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   if (!canceled) dispatch(checkUserListen());
+  //   routeHandler();
+  //   console.log(created);
+  // }, [logged]);
+
   ///lead functions
   const signWithGoogle = () => {
-    dispatch(loginListen());
+    dispatch(checkUserListen());
   }
 
+  const logInWithEmailPassword = () => {
+    dispatch(loginWithEmailPasswordListen(email, password));
+  }
 
   ///navigation
+  const routeHandler = () => {
+    if (created && logged) navigateToApp()
+    else if (logged) {
+      navigateToFeed();
+    }
+  }
+
+  const navigateToFeed = () => {
+    navigation.navigate("tour");
+  }
+
+  const navigateToApp = () => {
+    navigation.navigate("app-route");
+  }
+
   const routeToWelcome = () => {
     navigation.navigate('welcome');
   };
@@ -43,6 +72,7 @@ const Login = ({ navigation }) => {
           <View>
             <Text style={style.loginlabel}>username</Text>
             <Input
+              onChangeText={e => setEmail(e)}
               variant="outline"
               borderColor={'#3498db'}
               placeholder="test123@gmail.com"
@@ -51,6 +81,7 @@ const Login = ({ navigation }) => {
             <Text />
             <Text style={style.loginlabel}>password</Text>
             <Input
+              onChangeText={e => setPassword(e)}
               type="password"
               borderColor={'#3498db'}
               variant="outline"
@@ -62,7 +93,9 @@ const Login = ({ navigation }) => {
             </Text>
           </View>
           <View style={style.btnContainer}>
-            <Button style={style.signinBtn}>SIGNIN</Button>
+            <Button
+              onPressOut={() => logInWithEmailPassword()}
+              style={style.signinBtn}>SIGNIN</Button>
           </View>
           <View style={[Theme.center, { marginTop: 10 }]}>
             <GoogleSigninButton

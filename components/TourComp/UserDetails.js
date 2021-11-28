@@ -57,10 +57,9 @@ const UserDetails = ({ navigation }) => {
 
     return (
         <View style={Theme.mainScreen} >
-            <StatusBar animated={true} backgroundColor="#10ac84" />
             <View style={[Theme.flex1, Theme.center]}>
                 <Text style={[Theme.f17]}>Let's fetch some
-                    <Text style={[Theme.fontBold, Theme.txtSuccess, { fontSize: 23 }]}> ABOUT</Text>
+                    <Text style={[Theme.fontBold, Theme.linkedInFontColor, Theme.f23]}> ABOUT</Text>
                 </Text>
             </View>
             <View style={[Theme.flex5]}>
@@ -86,12 +85,12 @@ const UserDetails = ({ navigation }) => {
                                 onPressOut={showDatePicker}
                                 style={[
                                     Theme.flex1,
-                                    Theme.btnSuccessOutline,
+                                    Theme.btnPrimaryOutline,
                                     Theme.center,
                                     Theme.flxDirectionRow,
                                 ]}>
-                                <Text style={[Theme.txtSuccess, { marginRight: 10 }]}>DOB</Text>
-                                <Icon name="calendar" color="#10ac84" size={20} />
+                                <Text style={[Theme.linkedInFontColor, Theme.mr10]}>DOB</Text>
+                                <Icon name="calendar" color="#3498db" size={20} />
                             </TouchableOpacity>
                         </View>
                         <View style={[Theme.flex1, Theme.pt30, Theme.center]}>
@@ -126,13 +125,13 @@ const UserDetails = ({ navigation }) => {
                         <TouchableOpacity
                             onPressOut={submitUserDetails}
                             style={[
-                                Theme.bgSuccess,
+                                Theme.linkedinBack,
                                 style.nextBtn,
                                 Theme.center,
                                 Theme.flxDirectionRow,
                                 Theme.btnM20
                             ]}>
-                            <Text style={[Theme.whiteFont, { marginRight: 10 }]}>NEXT</Text>
+                            <Text style={[Theme.whiteFont, Theme.mr10]}>NEXT</Text>
                             <Icon name="long-arrow-right" color="#ecf0f1" size={20} />
                         </TouchableOpacity>
                     </View>

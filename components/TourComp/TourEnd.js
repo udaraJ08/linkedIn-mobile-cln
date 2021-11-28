@@ -5,9 +5,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { StatusBar } from "native-base"
 
 const TourEnd = ({ navigation }) => {
+
+    //ROUTING
+    const routeToApp = () => {
+        navigation.navigate("app-route");
+    }
+
     return (
         <View style={[Theme.mainScreen, Theme.center]}>
-            <StatusBar animated={true} backgroundColor="#3498db" />
             <Text style={[Theme.f35, Theme.fontThin, Theme.mb10]}>READY TO GO</Text>
             <Text style={[Theme.f15, Theme.fontThin]}>This can be a begining of a
                 <Text style={[Theme.fontSemiBold, Theme.linkedInFontColor]}> GREATNESS</Text>
@@ -22,7 +27,7 @@ const TourEnd = ({ navigation }) => {
                 <Text style={[Theme.fontSemiBold, Theme.linkedInFontColor]}>Linked In </Text>
                 with the world..</Text>
             <TouchableOpacity
-                onPressOut={() => navigateToAvatar()}
+                onPressOut={() => routeToApp()}
                 style={[
                     Theme.linkedinBack,
                     Theme.btnM50,

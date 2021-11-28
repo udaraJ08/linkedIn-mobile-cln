@@ -8,15 +8,14 @@ import { checkUserListen } from '../../views/Login/action';
 const Welcome = ({ navigation }) => {
 
   ///redux selectors
-  const { logged, user, created } = useSelector(state => state.loginReducer);
+  const { logged, user, created, canceled } = useSelector(state => state.loginReducer);
 
   ///hooks calling
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkUserListen());
+    if (!canceled) dispatch(checkUserListen());
     routeHandler();
-    console.log(created);
   }, [logged]);
 
   ///navigations
@@ -45,7 +44,6 @@ const Welcome = ({ navigation }) => {
 
   return (
     <View style={[Theme.mainScreen, Theme.whiteBack]}>
-      <StatusBar backgroundColor="#3498db" />
       <View style={[style.upperView, Theme.center]}>
         <Image
           style={[style.mainImage]}
