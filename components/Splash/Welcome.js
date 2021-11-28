@@ -1,6 +1,6 @@
 import { Button } from 'native-base';
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, StatusBar, Image } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, Image, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import Theme from '../../assets/css/theme.style';
 import { checkUserListen } from '../../views/Login/action';
@@ -51,15 +51,17 @@ const Welcome = ({ navigation }) => {
         />
         <Text style={{ marginTop: 10 }}>Connect-to Oppurtunity</Text>
       </View>
-      <View style={[style.bottomView, Theme.linkedinBack, Theme.center]}>
-        <Button style={[style.joinBtn]} onPress={() => navigateToSignup()}>
-          JOIN US
-        </Button>
-        <Button style={[style.accountBtn]} onPressOut={() => navigateToLogin()}>
-          <Text style={[Theme.linkedInFontColor, { padding: 2 }]}>
+      <View style={[style.bottomView, Theme.center]}>
+        <TouchableOpacity
+          style={[Theme.btnPrimaryOutline, Theme.mr10, Theme.btnM20, Theme.txtDanger]}
+          onPress={() => navigateToSignup()}>
+          <Text style={[Theme.linkedInFontColor, Theme.fontBold]}>JOIN US</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[style.accountBtn]} onPressOut={() => navigateToLogin()}>
+          <Text style={[Theme.linkedInFontColor, Theme.btnM20, Theme.linkedinBack, Theme.whiteFont]}>
             HAVE AN ACCOUNT ?
           </Text>
-        </Button>
+        </TouchableOpacity>
       </View>
     </View>
   );

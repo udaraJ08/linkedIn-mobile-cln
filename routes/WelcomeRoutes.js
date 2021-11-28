@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 const WelcomeRoutes = () => {
   return (
     <NavigationContainer>
-      <StatusBar animated={true} backgroundColor="#ecf0f1" />
+      <StatusBar barStyle="dark-content" animated={true} backgroundColor="#ecf0f1" />
       <Stack.Navigator
         shifting="true"
         screenOptions={({ route, navigation }) => ({

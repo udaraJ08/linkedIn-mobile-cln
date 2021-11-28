@@ -2,7 +2,7 @@ import { call, takeLatest, put } from "@redux-saga/core/effects";
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import { checkProfileCreatedSuccess, loginCanceled, loginSuccess, logoutSuccess } from './action'
+import { checkProfileCreatedSuccess, loginCanceled, loginSuccess, logoutSuccess, clearCreateListen } from './action'
 
 import * as actionTypes from "./const";
 
@@ -91,7 +91,10 @@ export function* checkCurUserCB() {
             yield put(checkProfileCreatedSuccess());
             yield put(loginSuccess(data, userData));
         }
-        else if (data) yield put(loginSuccess(data));
+        else if (data) {
+            yield put(clearCreateListen());
+            yield put(loginSuccess(data))
+        }
     } catch (e) {
         yield put(loginCanceled());
         console.log(e);

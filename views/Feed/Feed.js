@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import Theme from '../../assets/css/theme.style'
 import firestore from '@react-native-firebase/firestore';
 import { logoutListen } from '../Login/action';
+import { Avatar, Input } from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Post from '../../components/Feed/Post';
 
 const Feed = ({ navigation }) => {
 
@@ -39,9 +42,25 @@ const Feed = ({ navigation }) => {
     }
 
     return (
-        <View style={[Theme.mainScreen, Theme.center, Theme.whiteBack]}>
-            <View style={[Theme.flex1]}></View>
-            <View style={[Theme.flex8, Theme.bgDanger]}><Text>asd</Text></View>
+        <View style={[Theme.mainScreen, Theme.whiteBack]}>
+            <View style={[Theme.flex1, Theme.flxDirectionRow]}>
+                <View style={[Theme.center, Theme.flex1]}>
+                    <TouchableOpacity onPressOut={routeToProfile}>
+                        <Avatar source={{ uri: userData ? userData[0]._data.image : "" }} />
+                    </TouchableOpacity>
+                </View>
+                <View style={[Theme.flex4, Theme.justifyCenter]}>
+                    <Input placeholder="Search" style={[styles.bgSearch]} variant={"filled"} />
+                </View>
+                <View style={[Theme.flex1, Theme.center]}>
+                    <Icon name="commenting" size={25} />
+                </View>
+            </View>
+            <View style={[Theme.flex8, styles.bgSection, Theme.w100]}>
+                <ScrollView style={[Theme.flex1, Theme.pb10]}>
+                    <Post />
+                </ScrollView>
+            </View>
         </View>
     )
 }
@@ -51,7 +70,12 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "30%",
     },
-
+    bgSection: {
+        backgroundColor: "#e0d9d3"
+    },
+    bgSearch: {
+        backgroundColor: "#dfe4ea"
+    }
 })
 
 export default Feed

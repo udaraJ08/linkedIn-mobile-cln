@@ -15,7 +15,7 @@ const Tab = createMaterialBottomTabNavigator();
 const AppRoutes = () => {
     return (
         <>
-            <StatusBar animated={true} backgroundColor="#ecf0f1" />
+            <StatusBar barStyle="dark-content" animated={true} backgroundColor="#ecf0f1" />
             <Tab.Navigator
                 initialRouteName="home"
                 activeColor="#2f3640"

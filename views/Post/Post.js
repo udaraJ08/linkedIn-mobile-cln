@@ -4,12 +4,8 @@ import Theme from '../../assets/css/theme.style'
 
 const Post = () => {
     return (
-        <View style={[Theme.mainScreen, Theme.center, Theme.whiteBack]}>
-            <Image
-                style={[styles.mainImage]}
-                source={require('../../assets/images/construction.png')}
-            />
-            <Text style={[Theme.f17, Theme.mt10, Theme.fontBold]}>Posts is under development</Text>
+        <View style={[Theme.mainScreen, Theme.whiteBack]}>
+
         </View>
     )
 }
