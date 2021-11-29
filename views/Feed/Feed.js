@@ -7,35 +7,19 @@ import { logoutListen } from '../Login/action';
 import { Avatar, Input } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Post from '../../components/Feed/Post';
+import { getAllPostListen } from './action';
 
 const Feed = ({ navigation }) => {
 
     //SELECTORS
     const { userData } = useSelector(state => state.loginReducer);
+    const { loaded, posts } = useSelector(state => state.feedReducer);
     const dispatch = useDispatch();
-
-    let network;
-
-    try {
-        network = userData[0]._data.network;
-    } catch (err) {
-        dispatch(logoutListen());
-    }
 
     //HOOKS
     useEffect(() => {
-        const subscriber = firestore()
-            .collection('network')
-            .doc(network)
-            .onSnapshot(documentSnapshot => {
-                console.log('User data: ', documentSnapshot.data());
-            });
-
-        // Stop listening for updates when no longer required
-        return () => subscriber();
-    }, [userData]);
-
-    //REAL-TIME-FETCH
+        if (!loaded) dispatch(getAllPostListen());
+    }, []);
 
     const routeToProfile = () => {
         navigation.navigate("profile");

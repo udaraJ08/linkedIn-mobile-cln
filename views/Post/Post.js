@@ -1,19 +1,34 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, Image, TextInput, ScrollView } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet, Image, TextInput, ScrollView, ImageBackground } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Theme from '../../assets/css/theme.style'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useDispatch, useSelector } from 'react-redux'
 import { Avatar } from 'native-base';
 import ImagePicker from 'react-native-image-crop-picker';
+import { width } from 'dom-helpers';
+import moment from 'moment';
+import { postAddListen } from './action';
+
+export const ASSET = "post/ASSET";
+export const NON_ASSET = "pots/NON_ASSET";
 
 const Post = ({ navigation }) => {
+
+    const date = new Date();
 
     const dispatch = useDispatch();
 
     //STATE
     const [asset, setAsset] = useState();
-    const [description, setDescription] = useState();
+    const [description, setDescription] = useState("");
+    const [disable, setDisable] = useState(true);
+    const [postBtnColor, setPostBtnColor] = useState("#95a5a6");
+    const [postType, setPostType] = useState(NON_ASSET);
+
+    useEffect(() => {
+        disableHandler()
+    }, [description])
 
     //SELECTORS
     const { userData } = useSelector(state => state.loginReducer);
@@ -24,11 +39,48 @@ const Post = ({ navigation }) => {
     }
 
     //LEAD FUNCTIONS
+    const disableHandler = () => {
+        if (description.toString().trim().length > 0) {
+            setDisable(false);
+            setPostBtnColor("#3498db");
+        }
+        else {
+            setDisable(true);
+            setPostBtnColor("#95a5a6");
+        }
+    }
+
     const validatePost = () => {
+
+        if (description.toString().trim().length > 0) {
+            if (asset) {
+                setPostType(ASSET);
+            } else {
+                setPostType(NON_ASSET);
+            }
+            return true;
+        }
+
+        return false;
 
     }
 
+    const getToday = () => {
+
+        return moment(date).format("MMM Do YY");
+    }
+
     const addPost = () => {
+
+        if (validatePost()) {
+            dispatch(postAddListen({
+                userID: userData ? `profile/${userData[0]._ref._documentPath._parts[1]}` : "",
+                createdAt: getToday(),
+                description,
+                asset,
+                likeCount: 0
+            }, postType))
+        }
 
     }
 
@@ -38,7 +90,10 @@ const Post = ({ navigation }) => {
             height: 400,
             cropping: true,
         }).then(image => {
-            setFileObj(image.path);
+            setAsset(image.path);
+            setPostType(ASSET);
+        }).catch(err => {
+            console.log(err);
         });
     }
 
@@ -48,7 +103,10 @@ const Post = ({ navigation }) => {
             height: 400,
             cropping: true
         }).then(image => {
-            setFileObj(image.path);
+            setAsset(image.path);
+            setPostType(ASSET);
+        }).catch(err => {
+            console.log(err);
         });
     }
 
@@ -66,7 +124,12 @@ const Post = ({ navigation }) => {
                     <Text style={[Theme.f20, Theme.fontBold, Theme.txtDark]}>Share Post</Text>
                 </View>
                 <View style={[Theme.flex1, Theme.justifyCenter, Theme.alignEnd, Theme.pr30]}>
-                    <Text style={[Theme.f17, Theme.fontBold, Theme.linkedInFontColor]}>Post</Text>
+                    <TouchableOpacity
+                        disabled={disable}
+                        onPressOut={addPost}
+                    >
+                        <Text style={[Theme.f17, Theme.fontBold, { color: postBtnColor }]}>Post</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
             <View style={[Theme.flex1, Theme.flxDirectionRow, Theme.p10]}>
@@ -86,8 +149,16 @@ const Post = ({ navigation }) => {
                 </View>
             </View>
             <View style={[Theme.flex6]}>
-                <ScrollView style={[Theme.p10, Theme.pt20]}>
-                    <TextInput multiline style={[Theme.f17, Theme.flex1]} placeholder={"Write down your idea here..."} />
+                <ScrollView style={[Theme.p10, Theme.pt20, Theme.flex1]}>
+                    <TextInput
+                        onChangeText={e => setDescription(e)}
+                        multiline style={[Theme.f17, Theme.flex1]} placeholder={"Write down your idea here..."} />
+                </ScrollView>
+                <ScrollView style={[Theme.p10, Theme.pt20, Theme.flex1]}>
+                    <ImageBackground
+                        style={[Theme.w100, { height: 300 }]}
+                        source={{ uri: asset }}
+                    ></ImageBackground>
                 </ScrollView>
             </View>
             <View style={[Theme.flex1, Theme.pl10, Theme.justifyEnd, Theme.pb10]}>

@@ -1,10 +1,11 @@
 import * as actionTypes from "./const"
 
-export const postAddListen = (data) => {
+export const postAddListen = (data, postType) => {
 
     return {
         type: actionTypes.POST_ADD_LISTEN,
-        data
+        data,
+        postType
     }
 }
 
