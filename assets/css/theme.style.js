@@ -140,16 +140,45 @@ const Theme = StyleSheet.create({
         justifyContent: "center"
     },
 
-    alignItemsCenter: {
-        alignItems: "center"
+    justifyEnd: {
+        justifyContent: "flex-end"
     },
 
-    flxDirectionRow: {
-        flexDirection: 'row'
+    justifyStart: {
+        justifyContent: "flex-start"
     },
 
     jstfyBetween: {
         justifyContent: "space-between"
+    },
+
+    justifyAround: {
+        justifyContent: "space-around"
+    },
+
+    justifyEvenly: {
+        justifyContent: "space-evenly"
+    },
+
+    alignItemsCenter: {
+        alignItems: "center"
+    },
+
+    alignEnd: {
+        alignItems: 'flex-end'
+    },
+
+    alignStart: {
+        alignItems: 'flex-start'
+    },
+
+    alignBaseLine: {
+
+        alignItems: "baseline"
+    },
+
+    flxDirectionRow: {
+        flexDirection: 'row'
     },
 
     flxWrap: {

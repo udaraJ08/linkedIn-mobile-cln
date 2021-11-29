@@ -28,7 +28,7 @@ const Post = () => {
                     <Text style={[Theme.txtDark]}>This is the linky's first post.</Text>
                 </View>
                 <View style={[Theme.mt20]}>
-                    <ImageBackground style={[Theme.w100, { height: 200 }]} source={{ uri: "https://c4.wallpaperflare.com/wallpaper/116/883/732/students-studying-motivational-minimalism-wallpaper-preview.jpg" }} resizeMode="cover" />
+                    <ImageBackground style={[Theme.w100, { height: 300 }]} source={{ uri: "https://c4.wallpaperflare.com/wallpaper/116/883/732/students-studying-motivational-minimalism-wallpaper-preview.jpg" }} resizeMode="cover" />
                 </View>
                 <View style={[Theme.mt20, Theme.flxDirectionRow, Theme.alignItemsCenter, style.bottomBorder, Theme.pb10]}>
                     <Icon name="thumbs-up" size={20} />
@@ -70,7 +70,7 @@ const Post = () => {
                     <Text style={[Theme.txtDark]}>Never Give up No matter what.🐱‍🚀</Text>
                 </View>
                 <View style={[Theme.mt20]}>
-                    <ImageBackground style={[Theme.w100, { height: 200 }]} source={{ uri: "https://wallpaperaccess.com/full/5621348.jpg" }} resizeMode="cover" />
+                    <ImageBackground style={[Theme.w100, { height: 300 }]} source={{ uri: "https://wallpaperaccess.com/full/5621348.jpg" }} resizeMode="cover" />
                 </View>
                 <View style={[Theme.mt20, Theme.flxDirectionRow, Theme.alignItemsCenter, style.bottomBorder, Theme.pb10]}>
                     <Icon name="thumbs-up" size={20} />
@@ -112,7 +112,7 @@ const Post = () => {
                     <Text style={[Theme.txtDark]}>Hi It's meee. 😋😂</Text>
                 </View>
                 <View style={[Theme.mt20]}>
-                    <ImageBackground style={[Theme.w100, { height: 200 }]} source={{ uri: "https://firebasestorage.googleapis.com/v0/b/link-phnx.appspot.com/o/avatar%2Ffile%3A%2Fstorage%2Femulated%2F0%2FAndroid%2Fdata%2Fcom.linkedclone%2Ffiles%2FPictures%2F3327fa6f-61b6-42fe-86b2-e24ded28b76d.jpg?alt=media&token=0694bf9c-5081-4ac4-a64e-64a7a2303a01" }} resizeMode="cover" />
+                    <ImageBackground style={[Theme.w100, { height: 300 }]} source={{ uri: "https://firebasestorage.googleapis.com/v0/b/link-phnx.appspot.com/o/avatar%2Ffile%3A%2Fstorage%2Femulated%2F0%2FAndroid%2Fdata%2Fcom.linkedclone%2Ffiles%2FPictures%2F3327fa6f-61b6-42fe-86b2-e24ded28b76d.jpg?alt=media&token=0694bf9c-5081-4ac4-a64e-64a7a2303a01" }} resizeMode="cover" />
                 </View>
                 <View style={[Theme.mt20, Theme.flxDirectionRow, Theme.alignItemsCenter, style.bottomBorder, Theme.pb10]}>
                     <Icon name="thumbs-up" size={20} />
