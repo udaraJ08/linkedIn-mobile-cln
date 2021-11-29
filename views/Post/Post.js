@@ -74,13 +74,14 @@ const Post = ({ navigation }) => {
 
         if (validatePost()) {
             dispatch(postAddListen({
-                userID: userData ? `profile/${userData[0]._ref._documentPath._parts[1]}` : "",
+                userID: userData[0]._ref._documentPath._parts[1],
                 createdAt: getToday(),
                 description,
                 asset,
                 likeCount: 0
             }, postType))
         }
+        routeBack();
 
     }
 
@@ -88,7 +89,6 @@ const Post = ({ navigation }) => {
         ImagePicker.openCamera({
             width: 300,
             height: 400,
-            cropping: true,
         }).then(image => {
             setAsset(image.path);
             setPostType(ASSET);
@@ -101,7 +101,6 @@ const Post = ({ navigation }) => {
         ImagePicker.openPicker({
             width: 300,
             height: 400,
-            cropping: true
         }).then(image => {
             setAsset(image.path);
             setPostType(ASSET);
@@ -148,18 +147,22 @@ const Post = ({ navigation }) => {
                     </View>
                 </View>
             </View>
-            <View style={[Theme.flex6]}>
-                <ScrollView style={[Theme.p10, Theme.pt20, Theme.flex1]}>
-                    <TextInput
-                        onChangeText={e => setDescription(e)}
-                        multiline style={[Theme.f17, Theme.flex1]} placeholder={"Write down your idea here..."} />
-                </ScrollView>
-                <ScrollView style={[Theme.p10, Theme.pt20, Theme.flex1]}>
-                    <ImageBackground
-                        style={[Theme.w100, { height: 300 }]}
-                        source={{ uri: asset }}
-                    ></ImageBackground>
-                </ScrollView>
+            <View style={[Theme.flex8]}>
+                <View style={[Theme.flex1]}>
+                    <ScrollView style={[Theme.p10, Theme.pt20,]}>
+                        <TextInput
+                            onChangeText={e => setDescription(e)}
+                            multiline style={[Theme.f17, Theme.flex1]} placeholder={"Write down your idea here..."} />
+                    </ScrollView>
+                </View>
+                <View style={[Theme.flex3]}>
+                    <ScrollView style={[Theme.p10, Theme.pt20, Theme.flex5]}>
+                        <ImageBackground
+                            style={[Theme.w100, { height: 400 }]}
+                            source={{ uri: asset }}
+                        ></ImageBackground>
+                    </ScrollView>
+                </View>
             </View>
             <View style={[Theme.flex1, Theme.pl10, Theme.justifyEnd, Theme.pb10]}>
                 <View style={[Theme.flxDirectionRow, Theme.mt10]}>

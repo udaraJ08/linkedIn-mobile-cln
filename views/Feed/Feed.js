@@ -18,8 +18,8 @@ const Feed = ({ navigation }) => {
 
     //HOOKS
     useEffect(() => {
-        if (!loaded) dispatch(getAllPostListen());
-    }, []);
+        dispatch(getAllPostListen());
+    }, [posts]);
 
     const routeToProfile = () => {
         navigation.navigate("profile");
@@ -42,7 +42,9 @@ const Feed = ({ navigation }) => {
             </View>
             <View style={[Theme.flex8, styles.bgSection, Theme.w100]}>
                 <ScrollView style={[Theme.flex1, Theme.pb10]}>
-                    <Post />
+                    {
+                        posts.map((e, index) => <Post key={index} data={e} />)
+                    }
                 </ScrollView>
             </View>
         </View>

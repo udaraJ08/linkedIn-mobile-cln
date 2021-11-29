@@ -1,6 +1,7 @@
 import { call, takeLatest, put } from "@redux-saga/core/effects";
 import * as actionTypes from './const'
 import firestore from '@react-native-firebase/firestore';
+import { getAllPostSuccess } from "./action";
 
 const getAllPostsAsync = async () => {
 
@@ -15,9 +16,7 @@ export function* watchGetAllPostsCB() {
 
     try {
         const data = yield call(getAllPostsAsync);
-        console.log('====================================');
-        console.log(data._docs);
-        console.log('====================================');
+        yield put(getAllPostSuccess(data._docs));
     } catch (err) {
         console.log(err);
     }
