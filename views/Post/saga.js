@@ -1,8 +1,10 @@
 import { call, takeLatest, put } from "@redux-saga/core/effects";
-import * as actionTypes from "./const"
+import * as actionTypes from "./const";
+import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 
-const postAddAsync = async (payload) => {
-
+const postAddAsync = async (data) => {
+    console.log(data);
 }
 
 //-----------------------//
@@ -11,10 +13,17 @@ const postAddAsync = async (payload) => {
 
 export function* watchPostAddCB(payload) {
 
+    const { data } = payload;
+
+    try {
+        const data = yield call(postAddAsync, data);
+        // console.log(data);
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 export function* watchPostGetCB(payload) {
-
 }
 
 export function* watchLikteListen(payload) {

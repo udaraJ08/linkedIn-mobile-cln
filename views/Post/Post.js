@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, Image, TextInput, ScrollView } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Theme from '../../assets/css/theme.style'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Avatar } from 'native-base';
-import { height } from 'dom-helpers';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const Post = ({ navigation }) => {
+
+    const dispatch = useDispatch();
+
+    //STATE
+    const [asset, setAsset] = useState();
+    const [description, setDescription] = useState();
 
     //SELECTORS
     const { userData } = useSelector(state => state.loginReducer);
@@ -15,6 +21,35 @@ const Post = ({ navigation }) => {
     //ROUTINGS
     const routeBack = () => {
         navigation.navigate("home");
+    }
+
+    //LEAD FUNCTIONS
+    const validatePost = () => {
+
+    }
+
+    const addPost = () => {
+
+    }
+
+    const onCamera = async () => {
+        ImagePicker.openCamera({
+            width: 300,
+            height: 400,
+            cropping: true,
+        }).then(image => {
+            setFileObj(image.path);
+        });
+    }
+
+    const onGallery = async () => {
+        ImagePicker.openPicker({
+            width: 300,
+            height: 400,
+            cropping: true
+        }).then(image => {
+            setFileObj(image.path);
+        });
     }
 
     return (
@@ -58,13 +93,17 @@ const Post = ({ navigation }) => {
             <View style={[Theme.flex1, Theme.pl10, Theme.justifyEnd, Theme.pb10]}>
                 <View style={[Theme.flxDirectionRow, Theme.mt10]}>
                     <View style={[Theme.flex1, Theme.jstfyBetween, Theme.flxDirectionRow]}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPressOut={onCamera}
+                        >
                             <Icon name="camera" color="#2c3e50" size={25} />
                         </TouchableOpacity>
                         <TouchableOpacity>
                             <Icon name="video-camera" color="#2c3e50" size={25} />
                         </TouchableOpacity>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPressOut={onGallery}
+                        >
                             <Icon name="image" color="#2c3e50" size={25} />
                         </TouchableOpacity>
                         <TouchableOpacity>
